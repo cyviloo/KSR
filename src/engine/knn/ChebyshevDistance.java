@@ -1,6 +1,6 @@
 package engine.knn;
 
-public class ChebyshevDistance implements SampleDistance {
+class ChebyshevDistance implements SampleDistance {
 
 	@Override
 	public double distance(Sample s1, Sample s2) {

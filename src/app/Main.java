@@ -2,12 +2,26 @@ package app;
 
 import java.awt.EventQueue;
 
+import engine.knn.KnnAlgorithm;
+import engine.knn.Sample;
+import engine.knn.KnnAlgorithm.DistanceMethod;
 import gui.MainWindow;
 
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.print("hello world");
+
+		KnnAlgorithm knn = new KnnAlgorithm();
+		Sample s = new Sample();
+		s.features.add(112.1);
+		s.labels.add(1);
+		s.labels.add(2);
+		
+		knn.addSample(s);
+		knn.addSample(s);
+		knn.addSample(s);
+		knn.judge(s, 2, DistanceMethod.euclidean);
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

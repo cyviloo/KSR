@@ -2,7 +2,7 @@ package engine.knn;
 
 import java.util.Comparator;
 
-public class SampleComparator implements Comparator<Sample> {
+class SampleComparator implements Comparator<Sample> {
 
 	public SampleComparator(Sample model, SampleDistance distance) {
 		this.model = model;

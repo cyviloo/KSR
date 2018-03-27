@@ -7,6 +7,11 @@ import java.util.ArrayList;
  */
 
 public class Sample {
+	
+	public Sample() {
+		features = new ArrayList<>();
+		labels = new ArrayList<>();
+	}
 
 	public ArrayList<Double> features;
 

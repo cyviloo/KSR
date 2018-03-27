@@ -1,6 +1,6 @@
 package engine.knn;
 
-public interface SampleDistance {
+interface SampleDistance {
 
 	/*
 	 * Returns the distance between samples.

@@ -1,6 +1,6 @@
 package engine.knn;
 
-public class TaxiDistance implements SampleDistance {
+class TaxiDistance implements SampleDistance {
 
 	@Override
 	public double distance(Sample s1, Sample s2) {
