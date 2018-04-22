@@ -2,7 +2,7 @@ package engine.knn;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 public class KnnAlgorithm {
 
@@ -32,52 +32,39 @@ public class KnnAlgorithm {
 	/*
 	 * This method estimates (judges) the label of the given candidate.
 	 * 
-	 * It returns an array list of numeric labels
-	 * (which by the way is to contain only one element for a single-labeled data)
+	 * It returns the numeric label of the most
 	 * of the k nearest neighbours of the candidate sample,
 	 * basing on the certain metric of distance (euclidean, taxi, Chebyshev).
 	 */
-	public ArrayList<Integer> judge(
-			Sample candidate, int kNeighbours, DistanceMethod method) {
-		int numberOfLabels = candidate.numberOfLabels();
-		ArrayList<TreeMap<Integer, Integer>> scores = new ArrayList<>(numberOfLabels);
-		for(int i = 0; i < numberOfLabels; ++i)
-			scores.add(new TreeMap<>());
-
+	public int judge(Sample candidate, int kNeighbours, DistanceMethod method) {
 		// sort array basing on the candidate and the comparator
 		samples.sort(createSampleComparator(candidate, method));
 
-		// promote labels of those k nearest neighbours
+		// a map for mappings: label -> no of occurrences
+		HashMap<Integer, Integer> neighbours = new HashMap<>();
+
+		// set label values of those k nearest neighbours
 		for(int i = 0; i < kNeighbours; ++i) {
 			Sample neighbour = samples.get(i);
-			for(int labelNo = 0; labelNo < numberOfLabels; ++labelNo) {
-				int neighbourLabel = neighbour.labels.get(labelNo);
-				int newScore;
-				try {
-					newScore = scores.get(labelNo).get(neighbourLabel);
-				} catch(NullPointerException e) {
-					newScore = 0;
-				}
-				scores.get(labelNo).put(neighbourLabel, newScore + 1);
-			}
+			neighbours.put(neighbour.label, 0);
 		}
 
-		// find dominating labels
-		ArrayList<Integer> result = new ArrayList<Integer>(numberOfLabels);
-		for(int labelNo = 0; labelNo < numberOfLabels; ++labelNo) {
-			/*
-			 *  for every map:
-			 *  find max value from the values
-			 *  take its key
-			 *  the key means the winning label value for a single label
-			 *  
-			 *  construct the new array list from these values
-			 */
+		// increment label values that occurred and look for the winner
+		int max = 0;
+		for(int i = 0; i < kNeighbours; ++i) {
+			Sample neighbour = samples.get(i);
+			int value = neighbours.get(neighbour.label);
+			++value;
+			if(value > max)
+				max = value;
+			neighbours.put(neighbour.label, value);
 		}
 
-		// consider equally-sized classes
+		for(int label : neighbours.keySet())
+			if(neighbours.get(label) == max)
+				return label;
 
-		return result;
+		return -1;
 	}
 
 	private SampleComparator createSampleComparator(Sample model, DistanceMethod method) {

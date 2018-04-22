@@ -9,20 +9,21 @@ import java.util.ArrayList;
 public class Sample {
 	
 	public Sample() {
+		this(0);
+	}
+
+	public Sample(int label) {
+		this.label = label;
 		features = new ArrayList<>();
-		labels = new ArrayList<>();
 	}
 
 	public ArrayList<Double> features;
 
-	public ArrayList<Integer> labels;
+	public int label;
 
 
 	public int numberOfFeatures() {
 		return features.size();
 	}
-
-	public int numberOfLabels() {
-		return labels.size();
-	}
+	
 }
