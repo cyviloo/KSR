@@ -1,13 +1,16 @@
 package engine.knn;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 public class KnnAlgorithm {
 
 	public KnnAlgorithm() {
 		samples = new ArrayList<>();
+	}
+
+	public KnnAlgorithm(ArrayList<Sample> samples) {
+		this.samples = samples;
 	}
 
 	public enum DistanceMethod {
@@ -18,10 +21,6 @@ public class KnnAlgorithm {
 
 	public void addSample(Sample sample) {
 		samples.add(sample);
-	}
-
-	public void addSamples(Collection<Sample> samples) {
-		samples.addAll(samples);
 	}
 
 	public void addSamples(Sample[] samples) {
