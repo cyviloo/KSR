@@ -1,8 +1,6 @@
 package gui;
 
 import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.BorderLayout;
 import java.awt.Rectangle;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -11,18 +9,22 @@ import javax.swing.JCheckBox;
 import java.awt.Font;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
 public class MainWindow extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final ButtonGroup buttonGroupSimilarity = new ButtonGroup();
 	private final ButtonGroup buttonGroupMetric = new ButtonGroup();
 	public MainWindow() {
-		setBounds(new Rectangle(0, 0, 633, 560));
+		setBounds(new Rectangle(0, 0, 640, 570));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 		getContentPane().setLayout(null);
 		
 		JPanel featureExtractPanel = new JPanel();
