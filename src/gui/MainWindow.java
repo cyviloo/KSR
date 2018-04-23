@@ -75,7 +75,7 @@ public class MainWindow extends JFrame {
 		rdbtnBinarna.setBounds(22, 35, 213, 23);
 		similarityPanel.add(rdbtnBinarna);
 		
-		JRadioButton rdbtnOdlegoLoewensteina = new JRadioButton("odległość Loewensteina");
+		JRadioButton rdbtnOdlegoLoewensteina = new JRadioButton("Loewensteina");
 		buttonGroupSimilarity.add(rdbtnOdlegoLoewensteina);
 		rdbtnOdlegoLoewensteina.setBounds(22, 62, 213, 23);
 		similarityPanel.add(rdbtnOdlegoLoewensteina);
@@ -85,12 +85,12 @@ public class MainWindow extends JFrame {
 		rdbtnNgramw.setBounds(22, 89, 213, 23);
 		similarityPanel.add(rdbtnNgramw);
 		
-		JLabel lblMax = new JLabel("max:");
+		JLabel lblMax = new JLabel("min:");
 		lblMax.setBounds(249, 66, 41, 15);
 		similarityPanel.add(lblMax);
 		
 		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(0, 0, 5, 1));
+		spinner.setModel(new SpinnerNumberModel(1.0, 0.0, 1.0, 0.01));
 		spinner.setBounds(285, 64, 75, 20);
 		similarityPanel.add(spinner);
 		
@@ -99,7 +99,7 @@ public class MainWindow extends JFrame {
 		similarityPanel.add(lblMin);
 		
 		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(0.0, 0.0, 1.0, 0.001));
+		spinner_1.setModel(new SpinnerNumberModel(1.0, 0.0, 1.0, 0.01));
 		spinner_1.setBounds(285, 92, 75, 20);
 		similarityPanel.add(spinner_1);
 		

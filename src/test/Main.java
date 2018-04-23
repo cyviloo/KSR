@@ -13,6 +13,8 @@ public class Main {
 		TESTS.add(new StemmerTest());
 		TESTS.add(new TextCleanerTest());
 		TESTS.add(new FeatureExtractorTest());
+		TESTS.add(new BinaryMeasurerTest());
+		TESTS.add(new LevenshteinMeasurerTest());
 
 		/*
 		 * And then we run the tests.
