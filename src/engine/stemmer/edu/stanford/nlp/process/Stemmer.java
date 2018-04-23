@@ -1,4 +1,4 @@
-package engine.edu.stanford.nlp.process;
+package engine.stemmer.edu.stanford.nlp.process;
 
 
 /**

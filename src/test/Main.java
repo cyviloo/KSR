@@ -10,6 +10,7 @@ public class Main {
 		 * Here we add new tests to be run.
 		 */
 		TESTS.add(new KnnTest());
+		TESTS.add(new StemmerTest());
 
 		/*
 		 * And then we run the tests.
