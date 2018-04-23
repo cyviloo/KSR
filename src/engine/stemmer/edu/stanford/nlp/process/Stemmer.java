@@ -1,5 +1,6 @@
 package engine.stemmer.edu.stanford.nlp.process;
 
+import engine.stemmer.IStemmer;
 
 /**
  * Stemmer, implementing the Porter Stemming Algorithm
@@ -12,11 +13,16 @@ package engine.stemmer.edu.stanford.nlp.process;
  */
 
 /*
- * Note that the word stemmed is expected to be in lower case:
+ * Note from the editor:
+ * I adapted this class to suit my needs. This means I removed some
+ * code that involved other CoreNLP's classes and made this class implement
+ * one of interfaces of mine. So what you see is a slightly edited version
+ * of the original source code.
+ * By the way: Note that the word stemmed is expected to be in lower case:
  * forcing lower case must be done outside the Stemmer class.
  */
 
-public class Stemmer {
+public class Stemmer implements IStemmer {
   private char[] b;
   private int i,     /* offset into b */
   i_end, /* offset to end of stemmed word */
@@ -33,7 +39,7 @@ public class Stemmer {
   /**
    * Stems <code>s</code> and returns stemmed <code>String</code>.
    */
-
+  @Override
   public String stem(String s) {
     char[] characters = s.toCharArray();
     for (char character : characters) {

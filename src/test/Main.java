@@ -12,6 +12,7 @@ public class Main {
 		TESTS.add(new KnnTest());
 		TESTS.add(new StemmerTest());
 		TESTS.add(new TextCleanerTest());
+		TESTS.add(new FeatureExtractorTest());
 
 		/*
 		 * And then we run the tests.
