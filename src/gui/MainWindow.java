@@ -72,36 +72,45 @@ public class MainWindow extends JFrame {
 		JRadioButton rdbtnBinarna = new JRadioButton("binarna");
 		rdbtnBinarna.setSelected(true);
 		buttonGroupSimilarity.add(rdbtnBinarna);
-		rdbtnBinarna.setBounds(22, 35, 213, 23);
+		rdbtnBinarna.setBounds(22, 35, 136, 23);
 		similarityPanel.add(rdbtnBinarna);
 		
 		JRadioButton rdbtnOdlegoLoewensteina = new JRadioButton("Loewensteina");
 		buttonGroupSimilarity.add(rdbtnOdlegoLoewensteina);
-		rdbtnOdlegoLoewensteina.setBounds(22, 62, 213, 23);
+		rdbtnOdlegoLoewensteina.setBounds(22, 62, 136, 23);
 		similarityPanel.add(rdbtnOdlegoLoewensteina);
 		
 		JRadioButton rdbtnNgramw = new JRadioButton("n-gramów");
 		buttonGroupSimilarity.add(rdbtnNgramw);
-		rdbtnNgramw.setBounds(22, 89, 213, 23);
+		rdbtnNgramw.setBounds(22, 89, 136, 23);
 		similarityPanel.add(rdbtnNgramw);
 		
 		JLabel lblMax = new JLabel("min:");
-		lblMax.setBounds(249, 66, 41, 15);
+		lblMax.setBounds(166, 66, 41, 15);
 		similarityPanel.add(lblMax);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(1.0, 0.0, 1.0, 0.01));
-		spinner.setBounds(285, 64, 75, 20);
-		similarityPanel.add(spinner);
+		JSpinner LevenshteinSpinner = new JSpinner();
+		LevenshteinSpinner.setModel(new SpinnerNumberModel(1.0, 0.0, 1.0, 0.01));
+		LevenshteinSpinner.setBounds(202, 64, 75, 20);
+		similarityPanel.add(LevenshteinSpinner);
 		
 		JLabel lblMin = new JLabel("min:");
-		lblMin.setBounds(249, 94, 41, 15);
+		lblMin.setBounds(166, 94, 41, 15);
 		similarityPanel.add(lblMin);
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(1.0, 0.0, 1.0, 0.01));
-		spinner_1.setBounds(285, 92, 75, 20);
-		similarityPanel.add(spinner_1);
+		JSpinner nGramMinSpinner = new JSpinner();
+		nGramMinSpinner.setModel(new SpinnerNumberModel(1.0, 0.0, 1.0, 0.01));
+		nGramMinSpinner.setBounds(202, 92, 75, 20);
+		similarityPanel.add(nGramMinSpinner);
+		
+		JLabel lblNGram = new JLabel("n:");
+		lblNGram.setBounds(289, 94, 14, 15);
+		similarityPanel.add(lblNGram);
+		
+		JSpinner nGramNSpinner = new JSpinner();
+		nGramNSpinner.setModel(new SpinnerNumberModel(3, 0, 8, 1));
+		nGramNSpinner.setBounds(305, 92, 41, 20);
+		similarityPanel.add(nGramNSpinner);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);

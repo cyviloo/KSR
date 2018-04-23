@@ -15,12 +15,12 @@ public class Main {
 		TESTS.add(new FeatureExtractorTest());
 		TESTS.add(new BinaryMeasurerTest());
 		TESTS.add(new LevenshteinMeasurerTest());
+		TESTS.add(new NGramMeasurerTest());
 
 		/*
 		 * And then we run the tests.
 		 */
-		boolean result = runAllTests();
-		if(result) {
+		if(runAllTests()) {
 			System.out.println("All tests passed!");
 		}
 		else {
@@ -35,17 +35,25 @@ public class Main {
 
 	private static boolean runAllTests() {
 		boolean result = true;
+		boolean finalResult = true;
 		int counter = 1;
 		for(ITest test : TESTS) {
-			System.out.println("TEST " + counter + " - Running test: " + test.getName());
+			System.out.println(adjustLog(counter) + " - Running test: " + test.getName());
 			result = test.run();
-			if(!result)
-				System.out.println("TEST " + counter + " -  Test FAILED: " + test.getName() + " !");
+			if(!result) {
+				System.out.println(adjustLog(counter) + " -  Test FAILED: " + test.getName() + " !");
+				finalResult = result;
+			}
 			else
-				System.out.println("TEST " + counter + " -  Test passed: " + test.getName());
+				System.out.println(adjustLog(counter) + " -  Test passed: " + test.getName());
+			counter++;
 		}
 		System.out.println("");
-		return result;
+		return finalResult;
+	}
+
+	private static String adjustLog(int counter) {
+		return (counter < 10) ? "TEST  " + counter : "TEST " + counter;
 	}
 
 	private static ArrayList<ITest> TESTS = new ArrayList<>();
