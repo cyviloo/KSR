@@ -14,7 +14,6 @@ public class StemmerTest implements ITest {
 			return false;
 		if(!stemmer.stem("playful").equals("play"))
 			return false;
-		System.out.println(stemmer.stem("39z"));
 		return true;
 	}
 

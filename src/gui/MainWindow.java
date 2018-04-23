@@ -43,16 +43,20 @@ public class MainWindow extends JFrame {
 		featureExtractPanel.add(chckbxStemizacja);
 		
 		JCheckBox chckbxCzarnaListaSw = new JCheckBox("czarna lista słów");
-		chckbxCzarnaListaSw.setBounds(22, 62, 180, 23);
+		chckbxCzarnaListaSw.setBounds(22, 89, 180, 23);
 		featureExtractPanel.add(chckbxCzarnaListaSw);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(22, 93, 180, 165);
+		scrollPane.setBounds(22, 116, 180, 148);
 		featureExtractPanel.add(scrollPane);
 		
 		JTextArea textAreaCzarnaListaSw = new JTextArea();
 		scrollPane.setViewportView(textAreaCzarnaListaSw);
 		textAreaCzarnaListaSw.setText("the");
+		
+		JCheckBox removeNumbers = new JCheckBox("usunięcie liczb");
+		removeNumbers.setBounds(22, 62, 180, 23);
+		featureExtractPanel.add(removeNumbers);
 		
 		JPanel similarityPanel = new JPanel();
 		similarityPanel.setLayout(null);
