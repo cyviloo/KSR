@@ -15,7 +15,8 @@ public class LevenshteinMeasurer implements ISimilarityMeasurer {
 		int distance = calculate(base, examined);
 		double distRel = (double)distance / MAX_LEVENSHTEIN_DISTANCE;
 		distRel = Math.pow(distRel, SIMIL_EXP);
-		return 1.0 - distRel;
+		double result = 1.0 - distRel;
+		return result < 0 ? 0 : result;
 	}
 
 	private static int calculate(String x, String y) {
