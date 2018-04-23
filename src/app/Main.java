@@ -1,10 +1,6 @@
 package app;
 
 import java.awt.EventQueue;
-
-import engine.knn.KnnAlgorithm;
-import engine.knn.Sample;
-import engine.knn.KnnAlgorithm.DistanceMethod;
 import gui.MainWindow;
 
 public class Main {
