@@ -1,7 +1,7 @@
 package test;
 
-import similarity.BinaryMeasurer;
-import similarity.ISimilarityMeasurer;
+import engine.similarity.BinaryMeasurer;
+import engine.similarity.ISimilarityMeasurer;
 
 public class BinaryMeasurerTest implements ITest {
 

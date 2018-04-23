@@ -1,7 +1,7 @@
 package test;
 
-import similarity.ISimilarityMeasurer;
-import similarity.LevenshteinMeasurer;
+import engine.similarity.ISimilarityMeasurer;
+import engine.similarity.LevenshteinMeasurer;
 
 public class LevenshteinMeasurerTest implements ITest {
 

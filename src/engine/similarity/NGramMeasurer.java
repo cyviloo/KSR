@@ -1,4 +1,4 @@
-package similarity;
+package engine.similarity;
 
 public class NGramMeasurer implements ISimilarityMeasurer {
 

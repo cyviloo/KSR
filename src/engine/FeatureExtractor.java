@@ -3,10 +3,10 @@ package engine;
 import java.util.ArrayList;
 import java.util.Set;
 
+import engine.similarity.ISimilarityMeasurer;
 import engine.stemmer.IStemmer;
 import engine.stemmer.TextCleaner;
 import engine.stemmer.TextCleaner.Mode;
-import similarity.ISimilarityMeasurer;
 
 public class FeatureExtractor {
 

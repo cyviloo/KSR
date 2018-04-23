@@ -1,4 +1,4 @@
-package similarity;
+package engine.similarity;
 
 import java.util.Arrays;
 

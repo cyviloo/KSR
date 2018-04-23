@@ -1,7 +1,7 @@
 package test;
 
-import similarity.ISimilarityMeasurer;
-import similarity.NGramMeasurer;
+import engine.similarity.ISimilarityMeasurer;
+import engine.similarity.NGramMeasurer;
 
 public class NGramMeasurerTest implements ITest {
 
