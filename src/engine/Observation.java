@@ -15,10 +15,6 @@ public class Observation {
 		setFeatures(features);
 	}
 
-	public Observation(EtiquetteMap map, DataInputElement dataInputElement) {
-		this(map, dataInputElement, null);
-	}
-
 	public Observation(Observation other) {
 		map = other.map;
 		etiquette = other.etiquette;

@@ -18,6 +18,7 @@ public class Main {
 		TESTS.add(new NGramMeasurerTest());
 		TESTS.add(new XmlFeaturesTest());
 		TESTS.add(new FeatureCalculatorTest());
+		TESTS.add(new ExperimenterTest());
 
 		/*
 		 * And then we run the tests.

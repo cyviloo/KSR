@@ -31,7 +31,12 @@ public class FeatureExtractor {
 	 * Unifies text's lettercase.
 	 */
 	private String step1(String text) {
+		try {
 		return text.toLowerCase();
+		} catch(NullPointerException e) {
+//			System.out.println(text);
+			return "x";
+		}
 	}
 
 	/*

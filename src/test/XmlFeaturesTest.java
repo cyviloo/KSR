@@ -67,6 +67,6 @@ public class XmlFeaturesTest implements ITest {
 		return "Feature extraction from XML file";
 	}
 
-	private static final String xmlFileName = "data/test.xml";
+	static final String xmlFileName = "data/test.xml";
 	private XmlReutersContainer data = null;
 }

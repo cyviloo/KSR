@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 class SampleComparator implements Comparator<Sample> {
 
-	public SampleComparator(Sample model, SampleDistance distance) {
+	public SampleComparator(Sample model, ISampleDistance distance) {
 		this.model = model;
 		this.distance = distance;
 	} 
@@ -22,5 +22,5 @@ class SampleComparator implements Comparator<Sample> {
 	}
 
 	private Sample model;
-	private SampleDistance distance;
+	private ISampleDistance distance;
 }

@@ -1,6 +1,6 @@
 package engine.knn;
 
-class EuclideanDistance implements SampleDistance {
+class EuclideanDistance implements ISampleDistance {
 
 	@Override
 	public double distance(Sample s1, Sample s2) {

@@ -14,7 +14,7 @@ public class ReutersPlacesMap extends EtiquetteMap {
 			put(PLACES[i], ETIQUETTES[i]);
 	}
 
-	private static final String[] PLACES = {
+	public static final String[] PLACES = {
 			"west-germany", "usa", "france", "uk", "canada", "japan" 
 	};
 
