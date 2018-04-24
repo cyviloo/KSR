@@ -25,6 +25,10 @@ public class XmlReutersElement {
 		return places;
 	}
 
+	public String getTopic() {
+		return topic;
+	}
+
 	public String getText() {
 		return text;
 	}
@@ -37,6 +41,9 @@ public class XmlReutersElement {
 
 	@XmlElement(name = "PLACES")
 	private String places;
+
+	@XmlElement(name = "TOPICS")
+	private String topic;
 
 	@XmlElement(name = "BODY")
 	private String text;
