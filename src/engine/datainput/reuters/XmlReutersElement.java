@@ -1,4 +1,4 @@
-package engine.datainput;
+package engine.datainput.reuters;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

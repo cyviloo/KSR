@@ -8,9 +8,10 @@ import javax.xml.bind.JAXBException;
 import engine.FeatureExtractor;
 import engine.Features;
 import engine.Observation;
-import engine.datainput.DataInputElement;
-import engine.datainput.XmlReutersContainer;
-import engine.datainput.XmlReutersUnmarshaller;
+import engine.datainput.reuters.DataInputElement;
+import engine.datainput.reuters.ReutersPlacesMap;
+import engine.datainput.reuters.XmlReutersContainer;
+import engine.datainput.reuters.XmlReutersUnmarshaller;
 import engine.stemmer.edu.stanford.nlp.process.Stemmer;
 
 public class XmlFeaturesTest implements ITest {
@@ -29,9 +30,10 @@ public class XmlFeaturesTest implements ITest {
 	public boolean run() {
 		ArrayList<Observation> observations = new ArrayList<>();
 		FeatureExtractor extractor = new FeatureExtractor(null, new Stemmer(), true);
+
 		for(DataInputElement e : data.getElements()) {
 			Features features = extractor.extractFeatures(e.getTextValue());
-			observations.add(new Observation(e, features));
+			observations.add(new Observation(new ReutersPlacesMap(), e, features));
 		}
 
 		if(observations.get(0).getEtiquette() != 2)

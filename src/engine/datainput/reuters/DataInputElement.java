@@ -1,4 +1,4 @@
-package engine.datainput;
+package engine.datainput.reuters;
 
 /*
  * Classes implementing this interface must be able to provide their:

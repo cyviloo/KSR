@@ -1,25 +1,30 @@
 package engine;
 
-import engine.datainput.DataInputElement;
-import engine.datainput.PlacesMap;
+import engine.datainput.EtiquetteMap;
+import engine.datainput.reuters.DataInputElement;
 
 /*
  * This class holds information: { etiquette, features[] }
  */
 public class Observation {
 
-	public Observation(DataInputElement dataInputElement, Features features) {
-		// for now: only <PLACES> etiquette
-		etiquette = placesMap.get(dataInputElement.getEtiquette1());
+	public Observation(EtiquetteMap map,
+			DataInputElement dataInputElement, Features features) {
+		this.map = map;
+		etiquette = map.get(dataInputElement.getEtiquette1());
 		setFeatures(features);
 	}
 
-	public Observation(DataInputElement dataInputElement) {
-		this(dataInputElement, null);
+	public Observation(EtiquetteMap map, DataInputElement dataInputElement) {
+		this(map, dataInputElement, null);
 	}
 
 	public int getEtiquette() {
 		return etiquette;
+	}
+
+	public String getStringEtiquette() {
+		return map.getStringByEtiquette(getEtiquette());
 	}
 
 	public Features getFeatures() {
@@ -32,5 +37,5 @@ public class Observation {
 
 	private int etiquette;
 	private Features features;
-	private static final PlacesMap placesMap = new PlacesMap();
+	private final EtiquetteMap map;
 }

@@ -1,10 +1,10 @@
-package engine.datainput;
+package engine.datainput.reuters;
 
-import java.util.HashMap;
+import engine.datainput.EtiquetteMap;
 
-public class PlacesMap extends HashMap<String, Integer> {
+public class ReutersPlacesMap extends EtiquetteMap {
 
-	public PlacesMap() {
+	public ReutersPlacesMap() {
 		final int psize = PLACES.length;
 		final int esize = PLACES.length;
 		if(psize != esize)
@@ -12,13 +12,6 @@ public class PlacesMap extends HashMap<String, Integer> {
 					"PLACES and ETIQUETTES must have the same lengths!");
 		for(int i = 0; i < psize; ++i)
 			put(PLACES[i], ETIQUETTES[i]);
-	}
-
-	public String getPlaceByEtiquette(int etiquette) {
-		for(String s : keySet())
-			if(get(s).equals(etiquette))
-				return s;
-		return null;
 	}
 
 	private static final String[] PLACES = {

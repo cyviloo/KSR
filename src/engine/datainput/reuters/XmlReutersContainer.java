@@ -1,4 +1,4 @@
-package engine.datainput;
+package engine.datainput.reuters;
 
 import java.util.ArrayList;
 
