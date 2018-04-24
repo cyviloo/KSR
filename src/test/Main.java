@@ -17,6 +17,7 @@ public class Main {
 		TESTS.add(new LevenshteinMeasurerTest());
 		TESTS.add(new NGramMeasurerTest());
 		TESTS.add(new XmlFeaturesTest());
+		TESTS.add(new FeatureCalculatorTest());
 
 		/*
 		 * And then we run the tests.
