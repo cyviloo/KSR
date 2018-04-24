@@ -19,6 +19,15 @@ public class Observation {
 		this(map, dataInputElement, null);
 	}
 
+	public Observation(Observation other) {
+		map = other.map;
+		etiquette = other.etiquette;
+		features = new Features();
+		for(String s : other.features.keySet()) {
+			features.put(new String(s), other.features.get(s));
+		}
+	}
+
 	public int getEtiquette() {
 		return etiquette;
 	}

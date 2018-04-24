@@ -1,7 +1,7 @@
 package engine;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 
 
 /*
@@ -10,11 +10,15 @@ import java.util.List;
  *  - its value in the text
  */
 
-public class Features extends HashMap<String, Double> {
+public class Features extends TreeMap<String, Double> {
 
 	public Features(List<String> words) {
 		for(String s : words)
 			put(s, 0.0);
+	}
+
+	public Features() {
+		super();
 	}
 
 	private static final long serialVersionUID = 1L;
