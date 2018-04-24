@@ -8,28 +8,43 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "REUTERS")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class XmlReutersElement {
+public class XmlReutersElement implements DataInputElement {
 
 	public XmlReutersElement() {
 	}
 
-	public int getOldID() {
+	@Override
+	public String getEtiquette1() {
+		return getCountry();
+	}
+
+	@Override
+	public String getEtiquette2() {
+		return getTopic();
+	}
+
+	@Override
+	public String getTextValue() {
+		return getText();
+	}
+
+	protected int getOldID() {
 		return oldID;
 	}
 
-	public int getNewID() {
+	protected int getNewID() {
 		return newID;
 	}
 
-	public String getCountry() {
+	protected String getCountry() {
 		return places;
 	}
 
-	public String getTopic() {
+	protected String getTopic() {
 		return topic;
 	}
 
-	public String getText() {
+	protected String getText() {
 		return text;
 	}
 

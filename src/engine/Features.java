@@ -17,4 +17,5 @@ public class Features extends HashMap<String, Double> {
 			put(s, 0.0);
 	}
 
+	private static final long serialVersionUID = 1L;
 }
