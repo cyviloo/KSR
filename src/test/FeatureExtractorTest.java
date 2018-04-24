@@ -14,20 +14,19 @@ public class FeatureExtractorTest implements ITest {
 		Set<String> stopList = new HashSet<>();
 		stopList.add("though");
 
-		FeatureExtractor extractor = new FeatureExtractor(stopList,
-				new Stemmer(), true, null, null);
+		FeatureExtractor extractor = new FeatureExtractor(stopList, new Stemmer(), true);
 		Features features = extractor.extractFeatures(txt1);
-		if(features.features.get("play") != 1.0)
+		if(features.get("play") != 1.0)
 			return false;
-		if(features.features.get("plai") != 4.0)
+		if(features.get("plai") != 4.0)
 			return false;
-		if(features.features.get("piano") != 2.0)
+		if(features.get("piano") != 2.0)
 			return false;
-		if(features.features.get("color") != 4.0)
+		if(features.get("color") != 4.0)
 			return false;
-		if(features.features.get("player") != 1.0)
+		if(features.get("player") != 1.0)
 			return false;
-		if(features.features.get("though") != null)
+		if(features.get("though") != null)
 			return false;
 
 		return true;

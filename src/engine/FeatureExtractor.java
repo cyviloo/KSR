@@ -3,7 +3,6 @@ package engine;
 import java.util.ArrayList;
 import java.util.Set;
 
-import engine.similarity.ISimilarityMeasurer;
 import engine.stemmer.IStemmer;
 import engine.stemmer.TextCleaner;
 import engine.stemmer.TextCleaner.Mode;
@@ -11,14 +10,11 @@ import engine.stemmer.TextCleaner.Mode;
 public class FeatureExtractor {
 
 	public FeatureExtractor(
-			Set<String> wordsStopList, IStemmer stemmer, boolean cleanWordsWithNumbers,
-			Features baseFeatures, ISimilarityMeasurer similarityMeasurer) { // these two unneeded
+			Set<String> wordsStopList, IStemmer stemmer, boolean cleanWordsWithNumbers) {
 		cleaner = new TextCleaner(
 				cleanWordsWithNumbers ? Mode.forbid_any_numbers : Mode.allow_all_numbers,
 						wordsStopList);
 		this.stemmer = stemmer;
-		this.baseFeatures = baseFeatures;
-		measurer = similarityMeasurer;
 	}
 
 	public Features extractFeatures(String text) {
@@ -59,16 +55,12 @@ public class FeatureExtractor {
 	}
 
 	private void fillFeatures(Features f, ArrayList<String> words) {
-		if(baseFeatures == null) {
-			for(String s : words) {
-				double val = f.get(s);
-				f.put(s, val + 1);
-			}
+		for(String s : words) {
+			double val = f.get(s);
+			f.put(s, val + 1);
 		}
 	}
 	
 	private TextCleaner cleaner;
 	private IStemmer stemmer;
-	private Features baseFeatures;
-	private ISimilarityMeasurer measurer;
 }
