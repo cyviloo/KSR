@@ -12,7 +12,7 @@ public class FeatureExtractor {
 
 	public FeatureExtractor(
 			Set<String> wordsStopList, IStemmer stemmer, boolean cleanWordsWithNumbers,
-			Features baseFeatures, ISimilarityMeasurer similarityMeasurer) {
+			Features baseFeatures, ISimilarityMeasurer similarityMeasurer) { // these two unneeded
 		cleaner = new TextCleaner(
 				cleanWordsWithNumbers ? Mode.forbid_any_numbers : Mode.allow_all_numbers,
 						wordsStopList);
@@ -61,8 +61,8 @@ public class FeatureExtractor {
 	private void fillFeatures(Features f, ArrayList<String> words) {
 		if(baseFeatures == null) {
 			for(String s : words) {
-				double val = f.features.get(s);
-				f.features.put(s, val + 1);
+				double val = f.get(s);
+				f.put(s, val + 1);
 			}
 		}
 	}
