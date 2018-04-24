@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class XmlReutersContainer {
 
 	public XmlReutersContainer() {
-		 elements = new ArrayList<>();
+		 elements = new ArrayList<>(1000);
 	}
 
 	public ArrayList<XmlReutersElement> getElements() {

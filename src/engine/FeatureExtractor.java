@@ -34,8 +34,7 @@ public class FeatureExtractor {
 		try {
 		return text.toLowerCase();
 		} catch(NullPointerException e) {
-//			System.out.println(text);
-			return "x";
+			return "";
 		}
 	}
 

@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class KnnAlgorithm {
 
 	public KnnAlgorithm() {
-		samples = new ArrayList<>();
+		samples = new ArrayList<>(app.Defaults.INIT_ARR_CAP);
 	}
 
 	public KnnAlgorithm(ArrayList<Sample> samples) {
@@ -40,7 +40,7 @@ public class KnnAlgorithm {
 		samples.sort(createSampleComparator(candidate, method));
 
 		// a map for mappings: label -> no of occurrences
-		HashMap<Integer, Integer> neighbours = new HashMap<>();
+		HashMap<Integer, Integer> neighbours = new HashMap<>(app.Defaults.INIT_ARR_CAP);
 
 		// set label values of those k nearest neighbours
 		for(int i = 0; i < kNeighbours; ++i) {

@@ -28,18 +28,18 @@ import engine.stemmer.IStemmer;
 public class Experimenter {
 
 	public Experimenter(XmlReutersContainer data, EtiquetteMap etiquetteMap,
-			double trainingSetPercent,
+			double trainingSetPercent, double minAcceptableSimilarity,
 			IStemmer stemmer, ISimilarityMeasurer similarityMeasurer,
 			DistanceMethod distanceMetric, int kNeighbors, Set<String> wordsStopList,
 			boolean cleanWordsWithNumbers) {
 		this.etiquetteMap = etiquetteMap;
 		if(trainingSetPercent > MAX_TRAINING_SET_PERCENT)
 			trainingSetPercent = MAX_TRAINING_SET_PERCENT;
-		trainingSet = new ArrayList<>();
-		validatingSet = new ArrayList<>();
+		trainingSet = new ArrayList<>(1000);
+		validatingSet = new ArrayList<>(1000);
+		this.minAcceptableSimilarity = minAcceptableSimilarity;
 
 		knn = new KnnAlgorithm();
-		this.stemmer = stemmer;
 		this.measurer = similarityMeasurer;
 		this.distanceMetric = distanceMetric;
 		this.kNeighbors = kNeighbors;
@@ -51,17 +51,26 @@ public class Experimenter {
 		splitInputSetIntoObservations(filteredData);
 	}
 
-	public void run() {
-		System.out.println("filteredSize " + (validatingSet.size() + trainingSet.size()));
+	public double run() {
+		int ok = 0;
+		int nok = 0;
 		for(Observation o : validatingSet) {
-			calculator = new FeatureCalculator(o, measurer);
+			calculator = new FeatureCalculator(o, measurer, minAcceptableSimilarity);
 			Sample base = calculator.getBaselineAsSample();
 			knn = new KnnAlgorithm();
-			for(Observation other : trainingSet)
+			for(Observation other : trainingSet) {
 				knn.addSample(calculator.getOtherAsSample(other));
+			}
 			int result = knn.judge(base, kNeighbors, distanceMetric);
-			System.out.println(result);
+			if(result == o.getEtiquette())
+				ok++;
+			else
+				nok++;
 		}
+		int total = ok + nok;
+		return (double)ok / total;
+//		System.out.println("OK: " + ((double)ok / (double)total * 100) + " %");
+//		System.out.println("NOK: " + ((double)nok / (double)total * 100) + " %");
 	}
 
 	private void splitInputSetIntoObservations(ArrayList<XmlReutersElement> data) {
@@ -91,10 +100,10 @@ public class Experimenter {
 	}
 
 	private final int inputSetSize, trainingSetSize;
+	private double minAcceptableSimilarity;
 	private EtiquetteMap etiquetteMap;
 	private ArrayList<Observation> trainingSet, validatingSet;
 	private KnnAlgorithm knn;
-	private IStemmer stemmer;
 	private ISimilarityMeasurer measurer;
 	private DistanceMethod distanceMetric;
 	private int kNeighbors;

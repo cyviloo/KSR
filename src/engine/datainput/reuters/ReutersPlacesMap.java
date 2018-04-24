@@ -5,6 +5,7 @@ import engine.datainput.EtiquetteMap;
 public class ReutersPlacesMap extends EtiquetteMap {
 
 	public ReutersPlacesMap() {
+		super();
 		final int psize = PLACES.length;
 		final int esize = PLACES.length;
 		if(psize != esize)
