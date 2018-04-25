@@ -55,10 +55,11 @@ public class FeatureCalculator {
 				if(maxStringValue > s.getValue())
 					maxSimilarity = 1 / maxSimilarity; // explanation to this line is below
 				result.features.add(maxStringValue * maxSimilarity);
-				observation.getFeatures().remove(maxString);
 			}
 			else
 				result.features.add(0.0);
+			if(maxString != null)
+				observation.getFeatures().remove(maxString);
 		}
 		return result;
 	}
