@@ -2,6 +2,7 @@ package engine;
 
 import engine.datainput.EtiquetteMap;
 import engine.datainput.reuters.DataInputElement;
+import engine.datainput.reuters.ReutersPlacesMap;
 
 /*
  * This class holds information: { etiquette, features[] }
@@ -11,7 +12,10 @@ public class Observation {
 	public Observation(EtiquetteMap map,
 			DataInputElement dataInputElement, Features features) {
 		this.map = map;
-		etiquette = map.get(dataInputElement.getEtiquette1());
+		if(map instanceof ReutersPlacesMap)
+			etiquette = map.get(dataInputElement.getEtiquette1());
+		else
+			etiquette = map.get(dataInputElement.getEtiquette2());
 		setFeatures(features);
 	}
 
