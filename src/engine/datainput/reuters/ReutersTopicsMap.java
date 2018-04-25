@@ -8,6 +8,11 @@ public class ReutersTopicsMap extends EtiquetteMap {
 		super(TOPICS, ETIQUETTES);
 	}
 
+	@Override
+	public String getName() {
+		return "Reuters: TOPICS";
+	}
+
 	public final static String[] TOPICS = {
 			"?", "?!", "xxx", "XX", "x", "ABC"	// TODO check and edit
 	};

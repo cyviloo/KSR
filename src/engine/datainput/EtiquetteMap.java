@@ -29,6 +29,10 @@ public class EtiquetteMap extends HashMap<String, Integer> {
 		return null;
 	}
 
+	public String getName() {
+		return "no name";
+	}
+
 	public String names[];
 	public int etiquettes[];
 }

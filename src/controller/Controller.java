@@ -1,14 +1,21 @@
 package controller;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.xml.bind.JAXBException;
 
+import app.Defaults;
+import engine.datainput.DataInputElement;
 import engine.datainput.DataInputElement.EtiquetteType;
 import engine.datainput.EtiquetteMap;
 import engine.datainput.reuters.ReutersPlacesMap;
@@ -28,6 +35,7 @@ public class Controller {
 
 	public Controller(ExperimentParameters parameters) {
 		setExperimentParameters(parameters);
+		etiquetteMap = resolveEtiquetteMap();
 	}
 
 	public void setExperimentParameters(ExperimentParameters parameters) {
@@ -35,6 +43,8 @@ public class Controller {
 	}
 
 	public String getWordStoplistAsString() throws IOException {
+		if(params.wordStopListFilename == null)
+			return null;
 		File f = new File(params.wordStopListFilename);
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 		String result = "";
@@ -50,6 +60,8 @@ public class Controller {
 	}
 
 	public Set<String> getWordStopListAsSet() throws IOException {
+		if(params.wordStopListFilename == null)
+			return null;
 		File f = new File(params.wordStopListFilename);
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 		Set<String> result = new HashSet<>();
@@ -70,12 +82,84 @@ public class Controller {
 		um = new XmlReutersUnmarshaller(new File(params.xmlDataFilename));
 		data = um.fetchData();
 
-		Experimenter experimenter = new Experimenter(data, resolveEtiquetteMap(),
+		Experimenter experimenter = new Experimenter(data, etiquetteMap,
 				params.trainingSetPctSize, params.minAcceptableSimilarity, resolveStemmer(),
 				resolveSimilarityMeasurer(), params.metric, params.kNeighbours,
 				getWordStopListAsSet(), params.numbersCleaning);
 
 		ExperimentResults results = experimenter.run();
+
+		File output = new File(Defaults.EXPERIMENT_OUTPUT_FILENAME);
+		BufferedWriter writer = new BufferedWriter(new FileWriter(output));
+		writer.write("Experiment from " + new Date());
+		writer.newLine();
+		writer.newLine();
+		writer.write(" - - - CONDITIONS - - - ");
+		writer.write("Input dataset:");
+		writer.newLine();
+		for(Map.Entry<String, Integer> entry : getInputDataQuantities(data).entrySet()) {
+			writer.write("\t" + entry.getKey() + " - " + entry.getValue());
+			writer.newLine();
+		}
+		writer.write("Etiquette: " + etiquetteMap.getName());
+		writer.newLine();
+		writer.write("Training set size: " + params.trainingSetPctSize + " %");
+		writer.newLine();
+		writer.write("Similarity method: " + params.similarity);
+		writer.newLine();
+		if(params.similarity != SimilarityMethod.binary) {
+			writer.write("Minimal acceptable similarity: " + params.minAcceptableSimilarity);
+			writer.newLine();
+			if(params.similarity == SimilarityMethod.ngram) {
+				writer.write("N-Gram number: " + params.N);
+				writer.newLine();
+			}
+		}
+		if(params.stemming == StemMethod.porter_stemmer)
+			writer.write("Stemming: Porter's Stemming");
+		else
+			writer.write("Stemming: none");
+		writer.newLine();
+		if(params.numbersCleaning)
+			writer.write("Numbers cleaning: applied");
+		else
+			writer.write("Numbers cleaning: not applied");
+		writer.newLine();
+		if(params.wordStopListFilename != null)
+			writer.write("Word stop list: applied");
+		else
+			writer.write("Word stop list: not applied");
+		writer.newLine();
+		writer.write("K number of neighbours: " + params.kNeighbours);
+		writer.newLine();
+		writer.write("Distance metric: " + params.metric);
+		writer.newLine();
+
+		writer.newLine();
+		writer.write(" - - - RESULTS - - - ");
+		writer.write("Total tests: " + results.totalTests);
+		writer.newLine();
+		writer.write("Accuracy: " + results.accuracyPercent + " %");
+		writer.newLine();
+		writer.write("Statistics per label:");
+		writer.newLine();
+		for(String s : results.labelsGuessed.keySet()) {
+			int guessed;
+			int notGuessed;
+			try { guessed = results.labelsGuessed.get(s); }
+			catch (NullPointerException e) { guessed = 0; }
+			try { notGuessed = results.labelsNotGuessed.get(s); }
+			catch (NullPointerException e) { notGuessed = 0; }
+
+			writer.write("\t" + s + " - guessed: " + guessed);
+			writer.newLine();
+			writer.write("\t" + s + " - not guessed: " + notGuessed);
+			writer.newLine();
+			writer.write("\t" + s + " - accuracy: " +
+					(double)guessed * 100 / (guessed + notGuessed) + " %");
+			writer.newLine();
+		}
+		writer.close();
 	}
 
 	private EtiquetteMap resolveEtiquetteMap() {
@@ -107,5 +191,26 @@ public class Controller {
 			return null;
 	}
 
+	private TreeMap<String, Integer> getInputDataQuantities(XmlReutersContainer data) {
+		TreeMap<String, Integer> quantities = new TreeMap<>();
+		for(DataInputElement el : data.getElements()) {
+			int q;
+			String etiq;
+			if(etiquetteMap instanceof ReutersPlacesMap)
+				etiq = el.getEtiquette1();
+			else
+				etiq = el.getEtiquette2();
+			
+			try {
+				q = quantities.get(etiq);
+			} catch (NullPointerException e) {
+				q = 0;
+			}
+			quantities.put(etiq, ++q);
+		}
+		return quantities;
+	}
+
 	private ExperimentParameters params;
+	private EtiquetteMap etiquetteMap;
 }

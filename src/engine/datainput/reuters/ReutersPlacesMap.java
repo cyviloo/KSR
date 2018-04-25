@@ -13,6 +13,11 @@ public class ReutersPlacesMap extends EtiquetteMap {
 		super(PLACES, ETIQUETTES);
 	}
 
+	@Override
+	public String getName() {
+		return "Reuters: PLACES";
+	}
+
 	public static String[] PLACES = {
 			"west-germany", "usa", "france", "uk", "canada", "japan" 
 	};

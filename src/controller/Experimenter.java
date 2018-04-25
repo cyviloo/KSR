@@ -82,7 +82,7 @@ public class Experimenter {
 		}
 		int total = ok + nok;
 		results.totalTests = total;
-		results.accuracyPercent = (double)ok / total;
+		results.accuracyPercent = (double)ok * 100 / total;
 		return results;
 	}
 
