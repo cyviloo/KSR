@@ -6,6 +6,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import engine.datainput.DataInputElement;
+
 @XmlRootElement(name = "REUTERS")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class XmlReutersElement implements DataInputElement {

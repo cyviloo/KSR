@@ -8,7 +8,7 @@ import javax.xml.bind.JAXBException;
 import engine.FeatureExtractor;
 import engine.Features;
 import engine.Observation;
-import engine.datainput.reuters.DataInputElement;
+import engine.datainput.DataInputElement;
 import engine.datainput.reuters.ReutersPlacesMap;
 import engine.datainput.reuters.XmlReutersContainer;
 import engine.datainput.reuters.XmlReutersUnmarshaller;

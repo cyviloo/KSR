@@ -1,4 +1,4 @@
-package engine.datainput.reuters;
+package engine.datainput;
 
 /*
  * Classes implementing this interface must be able to provide their:
@@ -13,4 +13,10 @@ public interface DataInputElement {
 
 	public String getTextValue();
 
+	public static enum EtiquetteType {
+		reuters_places,
+		reuters_topics,
+		custom1,
+		custom2
+	}
 }

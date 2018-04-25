@@ -4,7 +4,7 @@ import engine.FeatureCalculator;
 import engine.FeatureExtractor;
 import engine.Features;
 import engine.Observation;
-import engine.datainput.reuters.DataInputElement;
+import engine.datainput.DataInputElement;
 import engine.datainput.reuters.ReutersPlacesMap;
 import engine.knn.Sample;
 import engine.similarity.LevenshteinMeasurer;

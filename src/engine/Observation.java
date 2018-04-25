@@ -1,7 +1,7 @@
 package engine;
 
+import engine.datainput.DataInputElement;
 import engine.datainput.EtiquetteMap;
-import engine.datainput.reuters.DataInputElement;
 import engine.datainput.reuters.ReutersPlacesMap;
 
 /*
