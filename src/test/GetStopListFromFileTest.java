@@ -10,7 +10,7 @@ public class GetStopListFromFileTest implements ITest {
 	@Override
 	public boolean run() {
 		ExperimentParameters params = new ExperimentParameters();
-		params.wordStopListFilename = "data/test_stoplist.txt";
+		params.wordStopListFilename = STOPLIST_FILE;
 		Controller ctrl = new Controller(params);
 		String result;
 		try {
@@ -30,4 +30,5 @@ public class GetStopListFromFileTest implements ITest {
 		return "Get word stop list from a file";
 	}
 
+	static final String STOPLIST_FILE = "data/test_stoplist.txt";
 }

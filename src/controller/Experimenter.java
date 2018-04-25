@@ -45,7 +45,7 @@ public class Experimenter {
 		this.kNeighbors = kNeighbors;
 
 		extractor = new FeatureExtractor(wordsStopList, stemmer, cleanWordsWithNumbers);
-		ArrayList<DataInputElement> filteredData = filterUnwantedData(data);
+		filteredData = filterUnwantedData(data);
 		inputSetSize = filteredData.size();
 		trainingSetSize = (int)((double)inputSetSize * trainingSetPercent / 100);
 		splitInputSetIntoObservations(filteredData);
@@ -63,27 +63,30 @@ public class Experimenter {
 				knn.addSample(calculator.getOtherAsSample(other));
 			}
 			int result = knn.judge(base, kNeighbors, distanceMetric);
+			String etiq = o.getStringEtiquette();
 			if(result == o.getEtiquette()) {
 				ok++;
-				String okEtiquette = o.getStringEtiquette();
-				Integer thisLabelOk = results.labelsGuessed.get(okEtiquette);
-				if(thisLabelOk == null)
-					thisLabelOk = 0;
-				results.labelsGuessed.put(okEtiquette, ++thisLabelOk);
+				int thisLabelOk;
+				try { thisLabelOk = results.labelsGuessed.get(etiq); }
+				catch (NullPointerException e) { thisLabelOk = 0; }
+				results.labelsGuessed.put(etiq, ++thisLabelOk);
 			}
 			else {
 				nok++;
-				String nokEtiquette = o.getStringEtiquette();
-				Integer thisLabelNok = results.labelsNotGuessed.get(nokEtiquette);
-				if(thisLabelNok == null)
-					thisLabelNok = 0;
-				results.labelsGuessed.put(nokEtiquette, ++thisLabelNok);
+				int thisLabelNok;
+				try { thisLabelNok = results.labelsNotGuessed.get(etiq); }
+				catch (NullPointerException e) { thisLabelNok = 0; }
+				results.labelsNotGuessed.put(etiq, ++thisLabelNok);
 			}
 		}
 		int total = ok + nok;
 		results.totalTests = total;
 		results.accuracyPercent = (double)ok * 100 / total;
 		return results;
+	}
+
+	public ArrayList<DataInputElement> getFilteredData() {
+		return filteredData;
 	}
 
 	private void splitInputSetIntoObservations(ArrayList<DataInputElement> data) {
@@ -121,6 +124,7 @@ public class Experimenter {
 		return result;
 	}
 
+	private ArrayList<DataInputElement> filteredData;
 	private final int inputSetSize, trainingSetSize;
 	private double minAcceptableSimilarity;
 	private EtiquetteMap etiquetteMap;

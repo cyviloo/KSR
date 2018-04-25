@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
@@ -95,12 +96,18 @@ public class Controller {
 		writer.newLine();
 		writer.newLine();
 		writer.write(" - - - CONDITIONS - - - ");
+		writer.newLine();
 		writer.write("Input dataset:");
 		writer.newLine();
-		for(Map.Entry<String, Integer> entry : getInputDataQuantities(data).entrySet()) {
+		int totalInput = 0;
+		for(Map.Entry<String, Integer> entry :
+			getInputDataQuantities(experimenter.getFilteredData()).entrySet()) {
 			writer.write("\t" + entry.getKey() + " - " + entry.getValue());
+			totalInput += entry.getValue();
 			writer.newLine();
 		}
+		writer.write("\tTotal: " + totalInput);
+		writer.newLine();
 		writer.write("Etiquette: " + etiquetteMap.getName());
 		writer.newLine();
 		writer.write("Training set size: " + params.trainingSetPctSize + " %");
@@ -137,6 +144,7 @@ public class Controller {
 
 		writer.newLine();
 		writer.write(" - - - RESULTS - - - ");
+		writer.newLine();
 		writer.write("Total tests: " + results.totalTests);
 		writer.newLine();
 		writer.write("Accuracy: " + results.accuracyPercent + " %");
@@ -191,9 +199,9 @@ public class Controller {
 			return null;
 	}
 
-	private TreeMap<String, Integer> getInputDataQuantities(XmlReutersContainer data) {
+	private TreeMap<String, Integer> getInputDataQuantities(ArrayList<DataInputElement> data) {
 		TreeMap<String, Integer> quantities = new TreeMap<>();
-		for(DataInputElement el : data.getElements()) {
+		for(DataInputElement el : data) {
 			int q;
 			String etiq;
 			if(etiquetteMap instanceof ReutersPlacesMap)

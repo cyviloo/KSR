@@ -20,6 +20,7 @@ public class Main {
 		TESTS.add(new FeatureCalculatorTest());
 		TESTS.add(new ExperimenterTest());
 		TESTS.add(new GetStopListFromFileTest());
+		TESTS.add(new ControllerTest());
 
 		/*
 		 * And then we run the tests.
