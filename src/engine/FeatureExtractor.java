@@ -32,7 +32,7 @@ public class FeatureExtractor {
 	 */
 	private String step1(String text) {
 		try {
-		return text.toLowerCase();
+			return text.toLowerCase();
 		} catch(NullPointerException e) {
 			return "";
 		}

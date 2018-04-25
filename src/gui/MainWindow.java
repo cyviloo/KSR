@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import java.awt.Rectangle;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import java.awt.Font;
@@ -13,6 +15,10 @@ import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JSlider;
 
 public class MainWindow extends JFrame {
 	/**
@@ -138,5 +144,60 @@ public class MainWindow extends JFrame {
 		buttonGroupMetric.add(rdbtnTakswkowa);
 		rdbtnTakswkowa.setBounds(22, 89, 213, 23);
 		panel.add(rdbtnTakswkowa);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(UIManager.getColor("Button.select"));
+		panel_1.setBounds(12, 300, 227, 233);
+		getContentPane().add(panel_1);
+		
+		JLabel getDataLbl = new JLabel("Pobieranie danych:");
+		getDataLbl.setFont(new Font("Dialog", Font.BOLD, 14));
+		getDataLbl.setBounds(12, 12, 165, 15);
+		panel_1.add(getDataLbl);
+		
+		JButton getReutersXmlBtn = new JButton("Wybierz plik XML");
+		getReutersXmlBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		getReutersXmlBtn.setBounds(29, 70, 165, 25);
+		panel_1.add(getReutersXmlBtn);
+		
+		JLabel reutersLbl = new JLabel("Reuters:");
+		reutersLbl.setBounds(79, 55, 61, 15);
+		panel_1.add(reutersLbl);
+		
+		JLabel lblWasneDane = new JLabel("Własne dane:");
+		lblWasneDane.setBounds(64, 114, 113, 15);
+		panel_1.add(lblWasneDane);
+		
+		JButton myOwnDataBtn = new JButton("Wybierz plik XML");
+		myOwnDataBtn.setBounds(29, 129, 165, 25);
+		panel_1.add(myOwnDataBtn);
+		
+		JSlider slider = new JSlider();
+		slider.setBounds(12, 205, 200, 16);
+		slider.setValue(60);
+		panel_1.add(slider);
+		
+		JLabel lblDaneUczce = new JLabel("Dane uczące");
+		lblDaneUczce.setFont(new Font("Dialog", Font.PLAIN, 10));
+		lblDaneUczce.setBounds(12, 189, 73, 15);
+		panel_1.add(lblDaneUczce);
+		
+		JLabel lblTrainingSetSize = new JLabel(String.valueOf(slider.getValue()) + " %");
+		lblTrainingSetSize.setFont(new Font("Dialog", Font.BOLD, 12));
+		lblTrainingSetSize.setBounds(166, 188, 46, 15);
+		panel_1.add(lblTrainingSetSize);
+
+		// action listeners
+		slider.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				lblTrainingSetSize.setText(String.valueOf(slider.getValue()) + " %");
+			}
+		});
 	}
 }
