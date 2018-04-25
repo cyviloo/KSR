@@ -8,9 +8,9 @@ import engine.FeatureExtractor;
 import engine.Features;
 import engine.Observation;
 import engine.datainput.EtiquetteMap;
+import engine.datainput.reuters.DataInputElement;
 import engine.datainput.reuters.ReutersPlacesMap;
 import engine.datainput.reuters.XmlReutersContainer;
-import engine.datainput.reuters.XmlReutersElement;
 import engine.knn.KnnAlgorithm;
 import engine.knn.KnnAlgorithm.DistanceMethod;
 import engine.knn.Sample;
@@ -45,7 +45,7 @@ public class Experimenter {
 		this.kNeighbors = kNeighbors;
 
 		extractor = new FeatureExtractor(wordsStopList, stemmer, cleanWordsWithNumbers);
-		ArrayList<XmlReutersElement> filteredData = filterUnwantedData(data);
+		ArrayList<DataInputElement> filteredData = filterUnwantedData(data);
 		inputSetSize = filteredData.size();
 		trainingSetSize = (int)((double)inputSetSize * trainingSetPercent / 100);
 		splitInputSetIntoObservations(filteredData);
@@ -86,9 +86,9 @@ public class Experimenter {
 		return results;
 	}
 
-	private void splitInputSetIntoObservations(ArrayList<XmlReutersElement> data) {
+	private void splitInputSetIntoObservations(ArrayList<DataInputElement> data) {
 		int i = 0;
-		for(XmlReutersElement element : data) {
+		for(DataInputElement element : data) {
 			Features features = extractor.extractFeatures(element.getTextValue());
 			Observation o = new Observation(etiquetteMap, element, features);
 			if(i < trainingSetSize)
@@ -99,15 +99,24 @@ public class Experimenter {
 		}
 	}
 
-	private ArrayList<XmlReutersElement> filterUnwantedData(XmlReutersContainer data) {
-		ArrayList<XmlReutersElement> result = new ArrayList<>();
-		for(XmlReutersElement el : data.getElements()) {
-			for(int i = 0; i < ReutersPlacesMap.PLACES.length; ++i) {
-				if(el.getEtiquette1().equals(ReutersPlacesMap.PLACES[i])) {
-					result.add(el);
-					break;
+	private ArrayList<DataInputElement> filterUnwantedData(XmlReutersContainer data) {
+		ArrayList<DataInputElement> result = new ArrayList<>();
+		int mapSize = etiquetteMap.size();
+		for(DataInputElement el : data.getElements()) {
+			if(etiquetteMap instanceof ReutersPlacesMap)
+				for(int i = 0; i < mapSize; ++i) {
+					if(el.getEtiquette1().equals(etiquetteMap.names[i])) {
+						result.add(el);
+						break;
+					}
 				}
-			}
+			else
+				for(int i = 0; i < mapSize; ++i) {
+					if(el.getEtiquette2().equals(etiquetteMap.names[i])) {
+						result.add(el);
+						break;
+					}
+				}
 		}
 		return result;
 	}
