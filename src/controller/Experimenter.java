@@ -51,7 +51,8 @@ public class Experimenter {
 		splitInputSetIntoObservations(filteredData);
 	}
 
-	public double run() {
+	public ExperimentResults run() {
+		ExperimentResults results = new ExperimentResults();
 		int ok = 0;
 		int nok = 0;
 		for(Observation o : validatingSet) {
@@ -62,15 +63,27 @@ public class Experimenter {
 				knn.addSample(calculator.getOtherAsSample(other));
 			}
 			int result = knn.judge(base, kNeighbors, distanceMetric);
-			if(result == o.getEtiquette())
+			if(result == o.getEtiquette()) {
 				ok++;
-			else
+				String okEtiquette = o.getStringEtiquette();
+				Integer thisLabelOk = results.labelsGuessed.get(okEtiquette);
+				if(thisLabelOk == null)
+					thisLabelOk = 0;
+				results.labelsGuessed.put(okEtiquette, ++thisLabelOk);
+			}
+			else {
 				nok++;
+				String nokEtiquette = o.getStringEtiquette();
+				Integer thisLabelNok = results.labelsNotGuessed.get(nokEtiquette);
+				if(thisLabelNok == null)
+					thisLabelNok = 0;
+				results.labelsGuessed.put(nokEtiquette, ++thisLabelNok);
+			}
 		}
 		int total = ok + nok;
-		return (double)ok / total;
-//		System.out.println("OK: " + ((double)ok / (double)total * 100) + " %");
-//		System.out.println("NOK: " + ((double)nok / (double)total * 100) + " %");
+		results.totalTests = total;
+		results.accuracyPercent = (double)ok / total;
+		return results;
 	}
 
 	private void splitInputSetIntoObservations(ArrayList<XmlReutersElement> data) {
