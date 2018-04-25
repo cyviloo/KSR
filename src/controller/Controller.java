@@ -78,6 +78,7 @@ public class Controller {
 	}
 
 	public void runExperiment() throws JAXBException, IOException {
+		date = new Date();
 		XmlReutersUnmarshaller um;	// TODO add some new if there is going to be one
 		XmlReutersContainer data;	// TODO same here
 		um = new XmlReutersUnmarshaller(new File(params.xmlDataFilename));
@@ -92,7 +93,7 @@ public class Controller {
 
 		File output = new File(Defaults.EXPERIMENT_OUTPUT_FILENAME);
 		BufferedWriter writer = new BufferedWriter(new FileWriter(output));
-		writer.write("Experiment from " + new Date());
+		writer.write("Experiment from " + date);
 		writer.newLine();
 		writer.newLine();
 		writer.write(" - - - CONDITIONS - - - ");
@@ -170,6 +171,10 @@ public class Controller {
 		writer.close();
 	}
 
+	public Date getExperimentDate() {
+		return date;
+	}
+
 	private EtiquetteMap resolveEtiquetteMap() {
 		if(params.etiquette == EtiquetteType.reuters_places)
 			return new ReutersPlacesMap();
@@ -221,4 +226,5 @@ public class Controller {
 
 	private ExperimentParameters params;
 	private EtiquetteMap etiquetteMap;
+	private Date date;
 }
