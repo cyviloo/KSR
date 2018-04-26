@@ -186,7 +186,7 @@ public class MainWindow extends JFrame {
 		
 		JLabel getDataLbl = new JLabel("Gather data:");
 		getDataLbl.setFont(new Font("Dialog", Font.BOLD, 14));
-		getDataLbl.setBounds(64, 12, 113, 15);
+		getDataLbl.setBounds(12, 12, 113, 15);
 		dataGatherPanel.add(getDataLbl);
 		
 		JButton getReutersXmlBtn = new JButton("Choose XML file");
@@ -260,7 +260,7 @@ public class MainWindow extends JFrame {
 		etiqPanel.setLayout(null);
 		
 		JLabel etiquetteLbl = new JLabel("Etiquette:");
-		etiquetteLbl.setBounds(27, 12, 77, 17);
+		etiquetteLbl.setBounds(12, 12, 77, 17);
 		etiquetteLbl.setFont(new Font("Dialog", Font.BOLD, 14));
 		etiqPanel.add(etiquetteLbl);
 		
