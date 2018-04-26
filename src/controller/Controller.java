@@ -208,11 +208,7 @@ public class Controller {
 		TreeMap<String, Integer> quantities = new TreeMap<>();
 		for(DataInputElement el : data) {
 			int q;
-			String etiq;
-			if(etiquetteMap instanceof ReutersPlacesMap)
-				etiq = el.getEtiquette1();
-			else
-				etiq = el.getEtiquette2();
+			String etiq = etiquetteMap.getInputElementProperEtiquette(el);
 			
 			try {
 				q = quantities.get(etiq);

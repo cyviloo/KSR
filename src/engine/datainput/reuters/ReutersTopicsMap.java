@@ -10,7 +10,7 @@ public class ReutersTopicsMap extends EtiquetteMap {
 
 	@Override
 	public String getName() {
-		return "Reuters: TOPICS";
+		return "Reuters - TOPICS";
 	}
 
 	public final static String[] TOPICS = {

@@ -15,7 +15,7 @@ public class ReutersPlacesMap extends EtiquetteMap {
 
 	@Override
 	public String getName() {
-		return "Reuters: PLACES";
+		return "Reuters - PLACES";
 	}
 
 	public static String[] PLACES = {

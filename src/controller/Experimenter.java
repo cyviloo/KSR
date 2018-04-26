@@ -9,7 +9,6 @@ import engine.Features;
 import engine.Observation;
 import engine.datainput.DataInputElement;
 import engine.datainput.EtiquetteMap;
-import engine.datainput.reuters.ReutersPlacesMap;
 import engine.datainput.reuters.XmlReutersContainer;
 import engine.knn.KnnAlgorithm;
 import engine.knn.KnnAlgorithm.DistanceMethod;
@@ -106,20 +105,13 @@ public class Experimenter {
 		ArrayList<DataInputElement> result = new ArrayList<>();
 		int mapSize = etiquetteMap.size();
 		for(DataInputElement el : data.getElements()) {
-			if(etiquetteMap instanceof ReutersPlacesMap)
-				for(int i = 0; i < mapSize; ++i) {
-					if(el.getEtiquette1().equals(etiquetteMap.names[i])) {
-						result.add(el);
-						break;
-					}
+			for(int i = 0; i < mapSize; ++i) {
+				if(etiquetteMap.getInputElementProperEtiquette(el).
+						equals(etiquetteMap.names[i])) {
+					result.add(el);
+					break;
 				}
-			else
-				for(int i = 0; i < mapSize; ++i) {
-					if(el.getEtiquette2().equals(etiquetteMap.names[i])) {
-						result.add(el);
-						break;
-					}
-				}
+			}
 		}
 		return result;
 	}
