@@ -28,7 +28,7 @@ for xmlFile in ${xmlDataFiles[@]}; do
             for mtr in ${metric[@]}; do
               for k in ${kNumber[@]}; do
                       blist=`basename $list`
-     	              $runCmd $xmlFile $list ${etiquettes[0]} $trainingPctSize binary ${nNumber[1]} 1 $stem $mtr $k $numbers_cleaning && mv $freshFile "test_${xmlFile}_${blist}_${etiquettes[0]}_${trainingPctSize}_binary_${nNumber[1]}_${minSim}_${stem}_${mtr}_${k}_${numbers_cleaning}.log"
+     	              $runCmd $xmlFile $list ${etiquettes[1]} $trainingPctSize binary ${nNumber[1]} 1 $stem $mtr $k $numbers_cleaning && mv $freshFile "test_${xmlFile}_${blist}_${etiquettes[1]}_${trainingPctSize}_binary_${nNumber[1]}_${minSim}_${stem}_${mtr}_${k}_${numbers_cleaning}.log"
               done
             done
           done
