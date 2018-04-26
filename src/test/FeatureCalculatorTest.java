@@ -42,7 +42,7 @@ public class FeatureCalculatorTest implements ITest {
 		if(b.features.get(3) != 1)
 			return false;
 
-		if(o.features.get(0) != 3.2946856424394904)
+		if(o.features.get(0) != 3.2683281572999747)
 			return false;
 		if(o.features.get(1) != 0.7470177871865296)
 			return false;
