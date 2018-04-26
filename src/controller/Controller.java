@@ -44,8 +44,14 @@ public class Controller {
 	}
 
 	public String getWordStoplistAsString() throws IOException {
-		if(params.wordStopListFilename == null)
-			return null;
+		if(params.wordStopListFilename == null) {
+			if(params.stopList == null)
+				return null;
+			String result = "";
+			for(String s : params.stopList)
+				result += "\n" + s;
+			return result.substring(2);
+		}
 		File f = new File(params.wordStopListFilename);
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 		String result = "";
@@ -61,8 +67,9 @@ public class Controller {
 	}
 
 	public Set<String> getWordStopListAsSet() throws IOException {
-		if(params.wordStopListFilename == null)
-			return null;
+		if(params.wordStopListFilename == null) {
+			return params.stopList;
+		}
 		File f = new File(params.wordStopListFilename);
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 		Set<String> result = new HashSet<>();

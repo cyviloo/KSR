@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.HashSet;
+
 import engine.datainput.DataInputElement.EtiquetteType;
 import engine.knn.KnnAlgorithm.DistanceMethod;
 import engine.similarity.ISimilarityMeasurer.SimilarityMethod;
@@ -61,4 +63,9 @@ public class ExperimentParameters {
 	 * Name of the file containing word stoplist.
 	 */
 	public String wordStopListFilename;
+
+	/*
+	 * If the stoplist comes from GUI, it can be appended here.
+	 */
+	public HashSet<String> stopList;
 }
