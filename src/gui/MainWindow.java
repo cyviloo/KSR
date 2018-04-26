@@ -39,28 +39,28 @@ public class MainWindow extends JFrame {
 		getContentPane().add(featureExtractPanel);
 		featureExtractPanel.setLayout(null);
 		
-		JLabel labelFeatureExtract = new JLabel("Ekstrakcja cech:");
+		JLabel labelFeatureExtract = new JLabel("Feature extraction:");
 		labelFeatureExtract.setFont(new Font("Dialog", Font.BOLD, 14));
 		labelFeatureExtract.setBounds(12, 12, 165, 15);
 		featureExtractPanel.add(labelFeatureExtract);
 		
-		JCheckBox chckbxStemizacja = new JCheckBox("stemizacja");
+		JCheckBox chckbxStemizacja = new JCheckBox("stemming");
 		chckbxStemizacja.setBounds(22, 35, 180, 23);
 		featureExtractPanel.add(chckbxStemizacja);
 		
-		JCheckBox chckbxCzarnaListaSw = new JCheckBox("czarna lista słów");
-		chckbxCzarnaListaSw.setBounds(22, 89, 180, 23);
-		featureExtractPanel.add(chckbxCzarnaListaSw);
+		JCheckBox chckbxStopList = new JCheckBox("word stoplist");
+		chckbxStopList.setBounds(22, 89, 180, 23);
+		featureExtractPanel.add(chckbxStopList);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(22, 116, 180, 148);
-		featureExtractPanel.add(scrollPane);
+		JScrollPane featureExtractscrollPane = new JScrollPane();
+		featureExtractscrollPane.setBounds(22, 116, 180, 148);
+		featureExtractPanel.add(featureExtractscrollPane);
 		
 		JTextArea textAreaCzarnaListaSw = new JTextArea();
-		scrollPane.setViewportView(textAreaCzarnaListaSw);
+		featureExtractscrollPane.setViewportView(textAreaCzarnaListaSw);
 		textAreaCzarnaListaSw.setText("the");
 		
-		JCheckBox removeNumbers = new JCheckBox("usunięcie liczb");
+		JCheckBox removeNumbers = new JCheckBox("remove numbers");
 		removeNumbers.setBounds(22, 62, 180, 23);
 		featureExtractPanel.add(removeNumbers);
 		
@@ -70,23 +70,23 @@ public class MainWindow extends JFrame {
 		similarityPanel.setBounds(251, 12, 370, 132);
 		getContentPane().add(similarityPanel);
 		
-		JLabel labelSimilarity = new JLabel("Miara podobieństwa:");
+		JLabel labelSimilarity = new JLabel("Similarity measure:");
 		labelSimilarity.setFont(new Font("Dialog", Font.BOLD, 14));
 		labelSimilarity.setBounds(12, 12, 186, 15);
 		similarityPanel.add(labelSimilarity);
 		
-		JRadioButton rdbtnBinarna = new JRadioButton("binarna");
-		rdbtnBinarna.setSelected(true);
-		buttonGroupSimilarity.add(rdbtnBinarna);
-		rdbtnBinarna.setBounds(22, 35, 136, 23);
-		similarityPanel.add(rdbtnBinarna);
+		JRadioButton rdbtnBinarySim = new JRadioButton("binary");
+		rdbtnBinarySim.setSelected(true);
+		buttonGroupSimilarity.add(rdbtnBinarySim);
+		rdbtnBinarySim.setBounds(22, 35, 136, 23);
+		similarityPanel.add(rdbtnBinarySim);
 		
-		JRadioButton rdbtnOdlegoLoewensteina = new JRadioButton("Loewensteina");
-		buttonGroupSimilarity.add(rdbtnOdlegoLoewensteina);
-		rdbtnOdlegoLoewensteina.setBounds(22, 62, 136, 23);
-		similarityPanel.add(rdbtnOdlegoLoewensteina);
+		JRadioButton rdbtnLevenshteinSim = new JRadioButton("Levenshtein's");
+		buttonGroupSimilarity.add(rdbtnLevenshteinSim);
+		rdbtnLevenshteinSim.setBounds(22, 62, 136, 23);
+		similarityPanel.add(rdbtnLevenshteinSim);
 		
-		JRadioButton rdbtnNgramw = new JRadioButton("n-gramów");
+		JRadioButton rdbtnNgramw = new JRadioButton("N-grams");
 		buttonGroupSimilarity.add(rdbtnNgramw);
 		rdbtnNgramw.setBounds(22, 89, 136, 23);
 		similarityPanel.add(rdbtnNgramw);
@@ -124,72 +124,72 @@ public class MainWindow extends JFrame {
 		panel.setBounds(251, 156, 370, 132);
 		getContentPane().add(panel);
 		
-		JLabel labelMetric = new JLabel("Metryka:");
+		JLabel labelMetric = new JLabel("Metric:");
 		labelMetric.setFont(new Font("Dialog", Font.BOLD, 14));
 		labelMetric.setBounds(12, 12, 186, 15);
 		panel.add(labelMetric);
 		
-		JRadioButton rdbtnEuklidesowa = new JRadioButton("euklidesowa");
-		rdbtnEuklidesowa.setSelected(true);
-		buttonGroupMetric.add(rdbtnEuklidesowa);
-		rdbtnEuklidesowa.setBounds(22, 35, 213, 23);
-		panel.add(rdbtnEuklidesowa);
+		JRadioButton rdbtnEuclidean = new JRadioButton("Euclidean");
+		rdbtnEuclidean.setSelected(true);
+		buttonGroupMetric.add(rdbtnEuclidean);
+		rdbtnEuclidean.setBounds(22, 35, 213, 23);
+		panel.add(rdbtnEuclidean);
 		
-		JRadioButton rdbtnCzebyszewa = new JRadioButton("Czebyszewa");
-		buttonGroupMetric.add(rdbtnCzebyszewa);
-		rdbtnCzebyszewa.setBounds(22, 62, 213, 23);
-		panel.add(rdbtnCzebyszewa);
+		JRadioButton rdbtnChebyshev = new JRadioButton("Chebyshev's");
+		buttonGroupMetric.add(rdbtnChebyshev);
+		rdbtnChebyshev.setBounds(22, 62, 213, 23);
+		panel.add(rdbtnChebyshev);
 		
-		JRadioButton rdbtnTakswkowa = new JRadioButton("taksówkowa");
-		buttonGroupMetric.add(rdbtnTakswkowa);
-		rdbtnTakswkowa.setBounds(22, 89, 213, 23);
-		panel.add(rdbtnTakswkowa);
+		JRadioButton rdbtnTaxi = new JRadioButton("Taxi");
+		buttonGroupMetric.add(rdbtnTaxi);
+		rdbtnTaxi.setBounds(22, 89, 213, 23);
+		panel.add(rdbtnTaxi);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setBackground(UIManager.getColor("Button.select"));
-		panel_1.setBounds(12, 300, 227, 233);
-		getContentPane().add(panel_1);
+		JPanel dataGatherPanel = new JPanel();
+		dataGatherPanel.setLayout(null);
+		dataGatherPanel.setBackground(UIManager.getColor("Button.select"));
+		dataGatherPanel.setBounds(12, 300, 227, 233);
+		getContentPane().add(dataGatherPanel);
 		
-		JLabel getDataLbl = new JLabel("Pobieranie danych:");
+		JLabel getDataLbl = new JLabel("Gather data:");
 		getDataLbl.setFont(new Font("Dialog", Font.BOLD, 14));
 		getDataLbl.setBounds(12, 12, 165, 15);
-		panel_1.add(getDataLbl);
+		dataGatherPanel.add(getDataLbl);
 		
-		JButton getReutersXmlBtn = new JButton("Wybierz plik XML");
+		JButton getReutersXmlBtn = new JButton("Choose XML file");
 		getReutersXmlBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		getReutersXmlBtn.setBounds(29, 70, 165, 25);
-		panel_1.add(getReutersXmlBtn);
+		dataGatherPanel.add(getReutersXmlBtn);
 		
 		JLabel reutersLbl = new JLabel("Reuters:");
 		reutersLbl.setBounds(79, 55, 61, 15);
-		panel_1.add(reutersLbl);
+		dataGatherPanel.add(reutersLbl);
 		
-		JLabel lblWasneDane = new JLabel("Własne dane:");
-		lblWasneDane.setBounds(64, 114, 113, 15);
-		panel_1.add(lblWasneDane);
+		JLabel lblOwnData = new JLabel("Own data:");
+		lblOwnData.setBounds(64, 114, 113, 15);
+		dataGatherPanel.add(lblOwnData);
 		
-		JButton myOwnDataBtn = new JButton("Wybierz plik XML");
+		JButton myOwnDataBtn = new JButton("Choose XML file");
 		myOwnDataBtn.setBounds(29, 129, 165, 25);
-		panel_1.add(myOwnDataBtn);
+		dataGatherPanel.add(myOwnDataBtn);
 		
 		JSlider slider = new JSlider();
 		slider.setBounds(12, 205, 200, 16);
 		slider.setValue(60);
-		panel_1.add(slider);
+		dataGatherPanel.add(slider);
 		
-		JLabel lblDaneUczce = new JLabel("Dane uczące");
-		lblDaneUczce.setFont(new Font("Dialog", Font.PLAIN, 10));
-		lblDaneUczce.setBounds(12, 189, 73, 15);
-		panel_1.add(lblDaneUczce);
+		JLabel lblTrainingData = new JLabel("Training data");
+		lblTrainingData.setFont(new Font("Dialog", Font.PLAIN, 10));
+		lblTrainingData.setBounds(12, 189, 73, 15);
+		dataGatherPanel.add(lblTrainingData);
 		
 		JLabel lblTrainingSetSize = new JLabel(String.valueOf(slider.getValue()) + " %");
 		lblTrainingSetSize.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblTrainingSetSize.setBounds(166, 188, 46, 15);
-		panel_1.add(lblTrainingSetSize);
+		dataGatherPanel.add(lblTrainingSetSize);
 
 		// action listeners
 		slider.addChangeListener(new ChangeListener() {
