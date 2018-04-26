@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# this script is for the purpose of preparing data xmls from
+# not really nice files .sgm (that are problematic to validate)
+
 sgm_files_directory="$1"
 data_dir="data"
 
