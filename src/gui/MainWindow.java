@@ -384,7 +384,7 @@ public class MainWindow extends JFrame {
 						else
 							params.stopList = null;
 
-						if(rdbtnEtiq1.getText().equals("REUTERS")) {
+						if(rdbtnEtiq1.getText().equals("PLACES")) {
 							if(rdbtnEtiq1.isSelected())
 								params.etiquette = EtiquetteType.reuters_places;
 							else

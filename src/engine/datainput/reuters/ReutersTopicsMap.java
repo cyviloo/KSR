@@ -14,7 +14,7 @@ public class ReutersTopicsMap extends EtiquetteMap {
 	}
 
 	public final static String[] TOPICS = {
-			"?", "?!", "xxx", "XX", "x", "ABC"	// TODO check and edit
+			"earn", "acq", "crude", "trade", "money-fx", "interest"
 	};
 
 	private final static int[] ETIQUETTES = {
