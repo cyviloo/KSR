@@ -53,7 +53,7 @@ public class FeatureCalculator {
 			if(maxSimilarity >= minAcceptableSimilarity) {
 				double maxStringValue = observation.getFeatures().get(maxString);
 				if(maxStringValue > s.getValue())
-					maxSimilarity = 1 / maxSimilarity; // explanation to this line is below
+					maxSimilarity = 2 - maxSimilarity; // explanation to this line is below
 				result.features.add(maxStringValue * maxSimilarity);
 			}
 			else
