@@ -1,0 +1,39 @@
+Experiment from Thu Apr 26 10:44:59 CEST 2018
+
+ - - - CONDITIONS - - - 
+Input dataset:
+	canada - 46
+	france - 10
+	japan - 53
+	uk - 44
+	usa - 419
+	west-germany - 27
+	Total: 599
+Etiquette: Reuters: PLACES
+Training set size: 60 %
+Similarity method: binary
+Stemming: Porter's Stemming
+Numbers cleaning: applied
+Word stop list: applied
+K number of neighbours: 7
+Distance metric: euclidean
+
+ - - - RESULTS - - - 
+Total tests: 240
+Accuracy: 72.5 %
+Statistics per label:
+	usa - guessed: 166
+	usa - not guessed: 12
+	usa - accuracy: 93.25842696629213 %
+	japan - guessed: 2
+	japan - not guessed: 11
+	japan - accuracy: 15.384615384615385 %
+	west-germany - guessed: 2
+	west-germany - not guessed: 3
+	west-germany - accuracy: 40.0 %
+	uk - guessed: 2
+	uk - not guessed: 21
+	uk - accuracy: 8.695652173913043 %
+	canada - guessed: 2
+	canada - not guessed: 17
+	canada - accuracy: 10.526315789473685 %
