@@ -175,6 +175,11 @@ public class Controller {
 					(double)guessed * 100 / (guessed + notGuessed) + " %");
 			writer.newLine();
 		}
+		writer.write("Labels not guessed at all: ");
+		for(String s : results.labelsNotGuessed.keySet())
+			if(results.labelsGuessed.get(s) == null)
+				writer.write(s + " ");
+		writer.newLine();
 		writer.close();
 	}
 

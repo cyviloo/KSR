@@ -21,19 +21,19 @@ runCmd="java -cp $bindir app.Main"
 
 for xmlFile in ${xmlDataFiles[@]}; do
   for list in ${stoplist[@]}; do
-#   for etiq in ${etiquettes[@]}; do
+   for etiq in ${etiquettes[@]}; do
 #      for sim in ${similarity[@]}; do
 #        for minSim in ${minAcceptableSimilarity[@]}; do
           for stem in ${stemming[@]}; do
             for mtr in ${metric[@]}; do
               for k in ${kNumber[@]}; do
                       blist=`basename $list`
-     	              $runCmd $xmlFile $list ${etiquettes[1]} $trainingPctSize binary ${nNumber[1]} 1 $stem $mtr $k $numbers_cleaning && mv $freshFile "test_${xmlFile}_${blist}_${etiquettes[1]}_${trainingPctSize}_binary_${nNumber[1]}_${minSim}_${stem}_${mtr}_${k}_${numbers_cleaning}.log"
+     	              $runCmd $xmlFile $list $etiq $trainingPctSize binary ${nNumber[1]} 1 $stem $mtr $k $numbers_cleaning && mv $freshFile "test_${xmlFile}_${blist}_${etiq}_trainPct${trainingPctSize}_binary_${nNumber[1]}_minSim${minSim}_${stem}_${mtr}_k${k}_${numbers_cleaning}.log"
               done
             done
           done
 #        done
 #      done
-#   done
+    done
   done
 done
