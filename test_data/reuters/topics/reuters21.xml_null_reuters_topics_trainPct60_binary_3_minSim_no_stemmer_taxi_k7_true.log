@@ -1,0 +1,37 @@
+Experiment from Thu Apr 26 23:56:14 CEST 2018
+
+ - - - CONDITIONS - - - 
+Input dataset:
+	acq - 58
+	crude - 21
+	earn - 258
+	interest - 14
+	money-fx - 26
+	trade - 7
+	Total: 384
+Etiquette: Reuters - TOPICS
+Training set size: 60 %
+Similarity method: binary
+Stemming: none
+Numbers cleaning: applied
+Word stop list: not applied
+K number of neighbours: 7
+Distance metric: taxi
+
+ - - - RESULTS - - - 
+Total tests: 154
+Accuracy: 81.16883116883118 %
+Statistics per label:
+	acq - guessed: 24
+	acq - not guessed: 6
+	acq - accuracy: 80.0 %
+	crude - guessed: 1
+	crude - not guessed: 12
+	crude - accuracy: 7.6923076923076925 %
+	money-fx - guessed: 8
+	money-fx - not guessed: 1
+	money-fx - accuracy: 88.88888888888889 %
+	earn - guessed: 92
+	earn - not guessed: 2
+	earn - accuracy: 97.87234042553192 %
+Labels not guessed at all: interest trade 
